@@ -7,6 +7,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 import pandas as pd
+import numpy as np
 
 hrefs = []
 playerList = []
@@ -170,7 +171,7 @@ driver.quit()
 
 
 
-import numpy as np
+
 
 fdf = pd.DataFrame(playerList)
 fdf.replace('NA', np.nan, regex=True, inplace=True) 
