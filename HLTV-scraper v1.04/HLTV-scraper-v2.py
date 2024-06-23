@@ -164,4 +164,4 @@ for href in hrefs[:2]:
     driver.switch_to.window(windows_teamList)
 
 driver.quit()  
-
+print('kek')
