@@ -178,9 +178,11 @@ fdf.sort_values(by='playerName', inplace=True)
 fdf.ffill(inplace=True)  # forward fill
 fdf.sort_index(inplace=True)  # sort everything back
 
+# optional
 fdf.insert(4, "KDratio", fdf.pop("K/D Ratio"))
 fdf.insert(7, "Total kills", fdf.pop("Total kills"))
 
 fdf
+
 
 #fdf.to_csv("2023-5-teams.csv")
