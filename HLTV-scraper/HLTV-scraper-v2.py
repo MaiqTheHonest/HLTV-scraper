@@ -108,6 +108,7 @@ for href in hrefs[:2]:
 
             else:
                 valueToFill = False
+                playerName = playerPrelimName
 
             for stat in stats:
                     
@@ -125,7 +126,7 @@ for href in hrefs[:2]:
                     statSniperKills = 'NA'
                     statSmgKills = 'NA'
                     statPistolKills = 'NA'
-                    playerName = 'NA'
+                    
                     
                 statList = {**statList, **dict({f"{statPair[0].text}" : actualStat})} # ** merges 2 dicts
 
