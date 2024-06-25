@@ -134,6 +134,7 @@ for href in hrefs[:2]:
                 
                 WebDriverWait(driver, 20).until(EC.visibility_of_element_located((By.XPATH, "//*[contains(text(), 'Individual')]"))).click()
                 
+                # if Webdriver gives TimeoutException here, check that these are still correct and up to date
                 statOKratio = unpack('/html/body/div[2]/div[8]/div[2]/div[1]/div/div[6]/div/div[1]/div[5]/div[3]/span[2]')
                 statOK = unpack('/html/body/div[2]/div[8]/div[2]/div[1]/div/div[6]/div/div[1]/div[5]/div[1]/span[2]')
                 statRifleKills = unpack("/html/body/div[2]/div[8]/div[2]/div[1]/div/div[6]/div/div[2]/div[5]/div[1]/span[2]")
