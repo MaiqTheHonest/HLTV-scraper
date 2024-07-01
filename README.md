@@ -15,3 +15,9 @@ If cookies popup appears in webdriver window, accept all
 
 
 Not detected by cloudflare as of 19.06.2024
+
+<br />
+
+a snippet of data produced (showing 8/25 variables):
+
+![image](https://github.com/MaiqTheHonest/HLTV-scraper/assets/60844551/6fa839ab-b7c1-4523-86ee-bdadbd12b628)
