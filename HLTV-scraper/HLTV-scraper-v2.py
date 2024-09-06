@@ -189,3 +189,4 @@ fdf
 
 
 #fdf.to_csv("2023-5-teams.csv")
+#print(comms)
