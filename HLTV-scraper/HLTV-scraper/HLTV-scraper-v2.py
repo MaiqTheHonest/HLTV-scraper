@@ -188,5 +188,5 @@ fdf.insert(7, "Total kills", fdf.pop("Total kills"))
 fdf
 
 
-#fdf.to_csv("2023-5-teams.csv")
+fdf.to_csv("2023-5-teams.csv")
 #print(fin)
