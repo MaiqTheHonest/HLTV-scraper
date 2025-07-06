@@ -28,9 +28,11 @@ driver.get('https://www.hltv.org/stats/teams?startDate=2023-01-01&endDate=2023-1
 
 
 windows_teamList  = driver.current_window_handle
+WebDriverWait(driver, 20).until(EC.element_to_be_clickable((By.ID, "CybotCookiebotDialogBodyLevelButtonLevelOptinAllowAll"))).click()
+time.sleep(3)
 
 elements = WebDriverWait(driver, 20).until(EC.visibility_of_all_elements_located((By.CSS_SELECTOR, "td.teamCol-teams-overview>a")))
-time.sleep(3)
+time.sleep(1)
 
 
 
@@ -76,18 +78,17 @@ for href in hrefs[:2]:
         lineupMembers = (WebDriverWait(driver, 20).until(EC.visibility_of_all_elements_located((By.CSS_SELECTOR, "div.teammate-info>a"))))[5*i : 5*(1+i)]
         i += 1
         j = 0
-        newhrefs = []  # reset hrefs for new lineup container
+        playerLinks = []  # reset hrefs for new lineup container
         playerPrelimNames = []
         
 
         for lineupMember in lineupMembers:
-        
-            newhrefs.append(lineupMember.get_attribute("href")) # Collect the required href attributes and store in a list
+            playerLinks.append(lineupMember.get_attribute("href")) # Collect the required href attributes and store in a list
             playerPrelimNames.append(lineupMember.find_element(By.CSS_SELECTOR, "div.text-ellipsis").text)
 
-        for newhref in newhrefs:
-            
+        for newhref in playerLinks:
             playerPrelimName = playerPrelimNames[j]
+
             j += 1
 
             if not any(d['playerName'] == playerPrelimName for d in playerList):  # checks if current player name is in playerList already
@@ -99,10 +100,10 @@ for href in hrefs[:2]:
 
                 # scraping individual player stats
                 statList = dict()
-                pbs = BeautifulSoup(driver.page_source,"lxml")
-                playerName = pbs.find("h1", class_= "summaryNickname").text
-                stats = pbs.find_all("div", class_="stats-row")
-                statTopPanel = pbs.find_all("div", class_ = "summaryStatBreakdownDataValue")
+                page_source = BeautifulSoup(driver.page_source,"lxml")
+                playerName = page_source.find("h1", class_= "summaryNickname").text
+                stats = page_source.find_all("div", class_="stats-row")
+                statTopPanel = page_source.find_all("div", class_ = "summaryStatBreakdownDataValue")
                 statImpact = statTopPanel[3].text
                 statKAST = (statTopPanel[2].text).strip("%")
 
@@ -114,7 +115,7 @@ for href in hrefs[:2]:
                     
                 statPair = stat.find_all("span")
 
-                if valueToFill == True:
+                if valueToFill is True:
                     actualStat = (statPair[1].text).strip("%")
                 else:
                     actualStat = 'NA'  # sets to NA if this is a repeat of the player
@@ -189,4 +190,3 @@ fdf
 
 
 fdf.to_csv("2023-5-teams.csv")
-#print(fin)
